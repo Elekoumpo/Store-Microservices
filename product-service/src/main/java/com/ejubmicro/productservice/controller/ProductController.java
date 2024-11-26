@@ -28,4 +28,11 @@ public class ProductController {
     public List<ProductResponse> getAllProducts(){
         return productService.getAllProducts();
     }
+
+    @GetMapping("/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public ProductResponse getProductByName(@PathVariable String name) {
+        return productService.getProductByName(name);
+    }
+
 }

@@ -20,6 +20,16 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
+    public ProductResponse getProductByName(String name) {
+        Product product = productRepository.findAll()
+                .stream()
+                .filter(p -> p.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        return mapToProductResponse(product);
+    }
+
     public void createProduct(ProductRequest productRequest){
 
         //creation of an object of Product class
